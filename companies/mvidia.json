@@ -1,0 +1,8 @@
+{
+    "name": "MVIDIA",
+    "desc": "A highly popular computer hardware brand, recently investing a large amount of money into Artifical Intelligence (AI).",
+    "start_stock": 225,
+    "current_stock": 225,
+    "risk": 4,
+    "shares": 1500000
+}

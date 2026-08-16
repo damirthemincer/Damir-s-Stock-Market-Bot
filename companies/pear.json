@@ -1,0 +1,8 @@
+{
+    "name": "Pear",
+    "desc": "A popular technology corporation mainly focusing in a proprietary ecosystem with their rather expensive products.",
+    "start_stock": 300,
+    "current_stock": 300,
+    "risk": 3,
+    "shares": 1000000
+}
