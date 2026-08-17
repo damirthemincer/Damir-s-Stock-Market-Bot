@@ -3,6 +3,8 @@ from discord.ext import commands, tasks
 from dotenv import load_dotenv
 import os
 import schedule
+from pathlib import Path
+import json
 
 # Load .env
 load_dotenv()
@@ -62,6 +64,17 @@ async def on_ready():
 @bot.command()
 async def test(ctx):
     await ctx.send("Test command works!")
+
+
+@bot.command()
+async def market(ctx):
+    message = ""
+    for file_path in Path('companies/').iterdir():
+        with open(f"companies/{file_path.name}", "r") as file:
+            data = json.load(file)
+            message += f"\n{data["name"]}: {data["current_stock"]} 💰"
+    await ctx.reply(message)
+
 
 # Slash command
 
