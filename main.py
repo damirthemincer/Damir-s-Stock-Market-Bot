@@ -6,6 +6,7 @@ import schedule
 from pathlib import Path
 import json
 from discord import app_commands
+import random
 
 # Load .env
 load_dotenv()
@@ -20,8 +21,21 @@ def test_job():
 
 schedule.every().second.do(test_job)
 
-# Global Variables
 
+def stock_rand(stock: int):
+    stock_rand_num = random.randint(0, 2)
+    if stock_rand_num == 0:
+        stock *= 1.1
+        return round(stock)
+    elif stock_rand_num == 1:
+        stock *= 0.9
+        return round(stock)
+    elif stock_rand_num == 2:
+        stock *= 1.3
+        return round(stock)
+
+
+# Global Variables
 
 # Intents
 intents = discord.Intents.default()
@@ -88,6 +102,11 @@ async def company(ctx, target):
         data = json.load(file)
         message = f"Name: **{data["name"]}** \nDescription: *{data["desc"]}* \nCurrent individual share price: **{str(data["current_stock"])}** \nRisk: **{str(data["risk"])}/10** \nOutstanding Shares: **{str(data["shares"])}**"
     await ctx.reply(message)
+
+
+@bot.command()
+async def test_rand(ctx):
+    await ctx.reply(str(stock_rand(stock=25)))
 
 
 # Slash command
