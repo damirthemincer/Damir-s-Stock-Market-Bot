@@ -109,7 +109,19 @@ async def test_rand(ctx):
     await ctx.reply(str(stock_rand(stock=25)))
 
 
+@bot.command()
+async def start(ctx):
+    user = ctx.author.id
+    amount = 20
+    data = {
+        "amount": amount
+    }
+    with open(f"user_data/{user}.json", "w") as file:
+        json.dump(data, file)
+    await ctx.reply("Placeholder Text")
+
 # Slash command
+
 
 @bot.tree.command(name="test", description="Test slash command")
 async def slash_test(interaction: discord.Interaction):
